@@ -1,8 +1,9 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, Image } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Carousel from 'react-native-snap-carousel';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -39,30 +40,49 @@ class BigCarousel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            slider1ActiveSlide: SLIDER_1_FIRST_ITEM
+            slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
+            showAlert: false
         }
 
     }
 
+    showAlert = () => {
+        this.setState({
+            showAlert: true
+        });
+    };
+    hideAlert = () => {
+        this.setState({
+            showAlert: false
+        });
+    };
+
     _renderItem = ({ item, index }) => {
         console.log("Image", item)
         return (
-            <View style={{ height: '100%', width: 300, borderRadius: 10 }}>
-                <View style={{ height: 180, }}>
-                    <Image
-                        style={{ width: '100%', height: '100%', borderRadius: 10, resizeMode: 'cover' }}
-                        source={require('../../Image/mountain.png')}
-                    />
+            <TouchableOpacity onPress={() => {
+                this.showAlert();
+            }}>
+
+                <View style={{ height: '100%', width: 300, borderRadius: 10 }}>
+                    <View style={{ height: 180, }}>
+                        <Image
+                            style={{ width: '100%', height: '100%', borderRadius: 10, resizeMode: 'cover' }}
+                            source={require('../../Image/mountain.png')}
+                        />
+                    </View>
+                    <View style={{ height: 80, paddingHorizontal: 3, paddingTop: 5 }}>
+                        <Text style={{ fontWeight: '600', color: 'black', fontWeight: '600', fontSize: 14 }} >The Latest From Traveloka</Text>
+                        <Text style={{ fontWeight: '600', color: 'gray', fontSize: 12 }} >Stay Informated of the latest feature updates</Text>
+                    </View>
                 </View>
-                <View style={{ height: 80, paddingHorizontal: 3, paddingTop: 5 }}>
-                    <Text style={{ fontWeight: '600', color: 'black', fontWeight: '600', fontSize: 14 }} >The Latest From Traveloka</Text>
-                    <Text style={{ fontWeight: '600', color: 'gray', fontSize: 12 }} >Stay Informated of the latest feature updates</Text>
-                </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 
     render() {
+
+        const { showAlert } = this.state;
 
         return (
             <View style={{ backgroundColor: 'white' }}>
@@ -74,7 +94,7 @@ class BigCarousel extends Component {
                     </View>
                 </View>
                 {/* Carousel */}
-                <View style={{ height: 250, padding: 10, width: '100%', paddingRight: 10, flex: 1,  }}>
+                <View style={{ height: 250, padding: 10, width: '100%', paddingRight: 10, flex: 1, }}>
                     <Carousel
                         ref={c => this._slider1Ref = c}
                         layout={"default"}
@@ -104,6 +124,23 @@ class BigCarousel extends Component {
                         onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index })}
                     />
                 </View>
+
+                {/* ALERT */}
+                <AwesomeAlert
+                    show={showAlert}
+                    showProgress={false}
+                    title="Attentioan!"
+                    message="Coming Soon"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showConfirmButton={true}
+                    confirmText="Got that"
+                    confirmButtonColor="#ff1e1e"
+                    onConfirmPressed={() => {
+                        this.hideAlert();
+                    }}
+                />
+
             </View>
         );
     }

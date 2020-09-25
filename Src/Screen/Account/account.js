@@ -4,20 +4,36 @@ import {
     StyleSheet,
     Dimensions,
     Text,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 class AccountScreen extends Component {
 
     constructor() {
         super()
         this.state = {
-
+            showAlert: false
         }
     }
 
+    showAlert = () => {
+        this.setState({
+            showAlert: true
+        });
+    };
+    hideAlert = () => {
+        this.setState({
+            showAlert: false
+        });
+    };
+
     render() {
+
+        const { showAlert } = this.state;
+
         return (
             <View style={{ flex: 1, backgroundColor: '#dedede' }}>
                 <ScrollView>
@@ -27,15 +43,19 @@ class AccountScreen extends Component {
                             <View style={{}}>
                                 <Text style={{ color: '#434343', fontWeight: '700' }}>Rahmad Iqbal</Text>
                                 <Text style={{ color: 'gray' }}>Logged In with Google</Text>
-                                <Text style={{ color: '#0d7fcc', fontWeight: '700' }}>VIEW MY PROFILE</Text>
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Text style={{ color: '#0d7fcc', fontWeight: '700' }}>VIEW MY PROFILE</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>
                     {/* PAYMENT */}
                     <View style={{ marginTop: 35, paddingHorizontal: 10 }}>
                         <Text style={{ fontSize: 15 }}>My Payment Options</Text>
-                        <View style={[ styles.card, {borderRadius: 5, marginVertical: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderRadius: 5, marginVertical: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='card-outline' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -43,39 +63,51 @@ class AccountScreen extends Component {
                                 <Text>Available Limit Rp. 7.000.000</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
 
                         </View>
-                        <View style={[ styles.card,{borderTopLeftRadius: 5, borderTopRightRadius: 5, marginTop: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderTopLeftRadius: 5, borderTopRightRadius: 5, marginTop: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='ios-library-outline' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
                                 <Text>Traveloka Pay</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
-                        <View style={[ styles.card,{borderBottomLeftRadius: 5, borderBottomRightRadius: 5, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderBottomLeftRadius: 5, borderBottomRightRadius: 5, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='ios-logo-bitcoin' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
                                 <Text>UANGKU Balance</Text>
-                                <Text style={{ fontWeight: '700', fontSize: 12, color: '#87eba4'}}>Activate now to enjoy quick and easy payments 24/7</Text>
+                                <Text style={{ fontWeight: '700', fontSize: 12, color: '#87eba4' }}>Activate now to enjoy quick and easy payments 24/7</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>
                     {/* REWARD */}
                     <View style={{ marginTop: 35, paddingHorizontal: 10 }}>
                         <Text style={{ fontSize: 15 }}>My Rewards</Text>
-                        <View style={[ styles.card,{borderTopLeftRadius: 5, borderTopRightRadius: 5, marginTop: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderTopLeftRadius: 5, borderTopRightRadius: 5, marginTop: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='server' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -83,11 +115,15 @@ class AccountScreen extends Component {
                                 <Text style={{ color: 'gray' }}>Trade points for coupons and learn how to earn more</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
-                        <View style={[ styles.card,{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='md-medal' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -95,11 +131,15 @@ class AccountScreen extends Component {
                                 <Text style={{ color: 'gray' }}>View coupons that you can use now</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center' }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
-                        <View style={[ styles.card,{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='md-logo-capacitor' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -107,15 +147,19 @@ class AccountScreen extends Component {
                                 <Text style={{ color: 'gray' }}>See available promos that are just for you!</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>
                     {/* BILL */}
                     <View style={{ marginTop: 35, paddingHorizontal: 10 }}>
                         <Text style={{ fontSize: 15 }}>My Bills</Text>
-                        <View style={[ styles.card1, {borderRadius: 5, marginVertical: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon1 ]}>
+                        <View style={[styles.card1, { borderRadius: 5, marginVertical: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon1]}>
                                 <Icon name='cash-sharp' size={70} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '75%', height: 100, justifyContent: 'center' }}>
@@ -130,8 +174,8 @@ class AccountScreen extends Component {
                     {/* MEMBER FEATURES */}
                     <View style={{ marginTop: 35, paddingHorizontal: 10, marginBottom: 30 }}>
                         <Text style={{ fontSize: 15 }}>Member Features</Text>
-                        <View style={[ styles.card, {borderRadius: 5, marginVertical: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderRadius: 5, marginVertical: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='newspaper' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -139,12 +183,16 @@ class AccountScreen extends Component {
                                 <Text style={{ color: 'gray' }}>Manage your refund in one place</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
 
                         </View>
-                        <View style={[ styles.card,{borderTopLeftRadius: 5, borderTopRightRadius: 5, marginTop: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderTopLeftRadius: 5, borderTopRightRadius: 5, marginTop: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='ios-alert-circle' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -152,11 +200,15 @@ class AccountScreen extends Component {
                                 <Text style={{ color: 'gray' }}>Manage your refund in one place</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
-                        <View style={[ styles.card,{borderBottomLeftRadius: 5, borderBottomRightRadius: 5, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
-                            <View style={[ styles.cardIcon ]}>
+                        <View style={[styles.card, { borderBottomLeftRadius: 5, borderBottomRightRadius: 5, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }]}>
+                            <View style={[styles.cardIcon]}>
                                 <Icon name='ios-settings' size={35} color='#0d7fcc' />
                             </View>
                             <View style={{ width: '70%', height: 60, justifyContent: 'center' }}>
@@ -164,11 +216,32 @@ class AccountScreen extends Component {
                                 <Text style={{ color: 'gray' }}>View and set your account preferences</Text>
                             </View>
                             <View style={{ width: '15%', height: 60, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
-                                <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                <TouchableOpacity onPress={() => {
+                                    this.showAlert();
+                                }}>
+                                    <Icon name='chevron-forward' size={20} color='#0d7fcc' />
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>
                 </ScrollView>
+
+                {/* ALERT */}
+                <AwesomeAlert
+                    show={showAlert}
+                    showProgress={false}
+                    title="Attentioan!"
+                    message="Coming Soon"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showConfirmButton={true}
+                    confirmText="Got that"
+                    confirmButtonColor="#ff1e1e"
+                    onConfirmPressed={() => {
+                        this.hideAlert();
+                    }}
+                />
+
             </View>
         )
     }

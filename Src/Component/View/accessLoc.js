@@ -1,12 +1,13 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, Image } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
-const screenWidth2 = screenWidth/2 
-const screenHeight2 = screenHeight*20/100 
+const screenWidth2 = screenWidth / 2
+const screenHeight2 = screenHeight * 20 / 100
 const containHeight = 30 / 100 * screenHeight
 const containWidth = screenWidth
 
@@ -18,13 +19,26 @@ class AccessLocation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            showAlert: false
         }
 
     }
 
+    showAlert = () => {
+        this.setState({
+            showAlert: true
+        });
+    };
+    hideAlert = () => {
+        this.setState({
+            showAlert: false
+        });
+    };
+
 
     render() {
+
+        const { showAlert } = this.state;
 
         return (
             <View
@@ -33,7 +47,7 @@ class AccessLocation extends Component {
                 {/*  */}
                 <View style={{ width: screenWidth, flex: 1, flexDirection: 'row' }}>
                     <View style={{ width: screenWidth2, flex: 1, height: screenHeight2, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10, paddingTop: 20 }}>
-                        <Text style={{ fontSize: 15, textAlign: 'justify', flexWrap:'wrap', color: 'white' }}>
+                        <Text style={{ fontSize: 15, textAlign: 'justify', flexWrap: 'wrap', color: 'white' }}>
                             Get access to Traveloka's complete features by choosing to enable location all the time!
                         </Text>
                     </View>
@@ -43,13 +57,37 @@ class AccessLocation extends Component {
                 </View>
                 {/*  */}
                 <View style={{ justifyContent: 'space-around', alignItems: 'flex-start', flexDirection: 'row', paddingVertical: 10 }}>
-                    <View style={{ justifyContent: 'center', borderWidth: 0.5, borderColor: '#434343', width: 160, height: 40, borderRadius: 5, }}>
-                        <Text style={{ textAlign: 'center', color: 'white' }}>Learn More</Text>
-                    </View>
-                    <View style={{ justifyContent: 'center', width: 160, height: 40, borderRadius: 5, backgroundColor: '#0d7fcc'  }}>
-                        <Text style={{ textAlign: 'center', color: 'white' }}>Enable Location</Text>
-                    </View>
+                    <TouchableOpacity onPress={() => {
+                        this.showAlert();
+                    }}>
+                        <View style={{ justifyContent: 'center', borderWidth: 0.5, borderColor: '#434343', width: 160, height: 40, borderRadius: 5, }}>
+                            <Text style={{ textAlign: 'center', color: 'white' }}>Learn More</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.showAlert();
+                    }}>
+                        <View style={{ justifyContent: 'center', width: 160, height: 40, borderRadius: 5, backgroundColor: '#0d7fcc' }}>
+                            <Text style={{ textAlign: 'center', color: 'white' }}>Enable Location</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
+
+                {/* ALERT */}
+                <AwesomeAlert
+                    show={showAlert}
+                    showProgress={false}
+                    title="Attentioan!"
+                    message="Coming Soon"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showConfirmButton={true}
+                    confirmText="Got that"
+                    confirmButtonColor="#ff1e1e"
+                    onConfirmPressed={() => {
+                        this.hideAlert();
+                    }}
+                />
 
             </View>
         );

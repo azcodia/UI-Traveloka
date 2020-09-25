@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -27,14 +27,27 @@ class CardCarousel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            showAlert: false
         }
 
     }
 
+    showAlert = () => {
+        this.setState({
+            showAlert: true
+        });
+    };
+    hideAlert = () => {
+        this.setState({
+            showAlert: false
+        });
+    };
+
     _renderItem = ({ item, index }) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                this.showAlert();
+              }}>
                 <View style={styles.itemListType2}>
                     <Image
                         style={{ width: 180, height: 180, borderRadius: 5 }}
@@ -51,6 +64,8 @@ class CardCarousel extends Component {
 
 
     render() {
+
+        const { showAlert } = this.state;
 
         return (
             <View style={{ backgroundColor: 'white' }}>
@@ -69,10 +84,25 @@ class CardCarousel extends Component {
                             horizontal={true}
                             data={data}
                             renderItem={this._renderItem}
-                            paddingHorizontal = {10}
+                            paddingHorizontal={10}
                         />
                     </View>
                 </View>
+                {/* ALERT */}
+                <AwesomeAlert
+                    show={showAlert}
+                    showProgress={false}
+                    title="Attentioan!"
+                    message="Coming Soon"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showConfirmButton={true}
+                    confirmText="Got that"
+                    confirmButtonColor="#ff1e1e"
+                    onConfirmPressed={() => {
+                        this.hideAlert();
+                    }}
+                />
             </View>
         );
     }
@@ -80,12 +110,12 @@ class CardCarousel extends Component {
 
 const styles = StyleSheet.create({
     itemListType2: {
-        backgroundColor: '#876ed2', 
-        height: 180, 
-        width: 180, 
+        backgroundColor: '#876ed2',
+        height: 180,
+        width: 180,
         // marginLeft: 10,
         borderRadius: 10
-      },
+    },
 });
 
 //make this component available to the app
