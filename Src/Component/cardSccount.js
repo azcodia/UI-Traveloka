@@ -30,8 +30,8 @@ class CardAccount extends Component {
                 style={{ height: containHeight, width: containWidth, backgroundColor: '#dedede' }}
             >
                 {/* Account */}
-                <View style={{ height: contHeightAccount, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 10, paddingTop: 5 }}>
-                    <View style={{ height: 50, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }}>
+                <View style={[ styles.cardAccount, { height: contHeightAccount }]}>
+                    <View style={[ styles.cardAccountProfile]}>
                         <Icon name='person-circle-sharp' size={50} color='#0d7fcc' />
                         <Text style={{ fontSize: 14, color: '#434343' }}>Rahmad Iqbal</Text>
                     </View>
@@ -40,18 +40,18 @@ class CardAccount extends Component {
                     </View>
                 </View>
                 {/* Wallet */}
-                <View style={{ justifyContent: 'center', flexDirection: 'row', flex: 1, alignItems: 'center', }}>
-                    <View style={{ width: contWidthWallet, backgroundColor: 'white', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', padding: 2, borderRadius: 5, marginHorizontal: 2 }}>
+                <View style={[ styles.cardWallet ]}>
+                    <View style={[ styles.cardWalletBox, { width: contWidthWallet }]}>
                         <Icon name='server' size={18} color='#0d7fcc' />
                         <Text style={{ fontSize: 12 }}>80 Points</Text>
                         <Icon name='chevron-forward' size={12} color='#0d7fcc' />
                     </View>
-                    <View style={{ width: contWidthWallet, backgroundColor: 'white', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', padding: 2, borderRadius: 5, marginHorizontal: 2 }}>
+                    <View style={[ styles.cardWalletBox, { width: contWidthWallet }]}>
                         <Icon name='wallet' size={18} color='#0d7fcc' />
                         <Text style={{ fontSize: 12 }}>Payment</Text>
                         <Icon name='chevron-forward' size={12} color='#0d7fcc' />
                     </View>
-                    <View style={{ width: contWidthWallet, backgroundColor: 'white', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', padding: 2, borderRadius: 5, marginHorizontal: 2 }}>
+                    <View style={[ styles.cardWalletBox, { width: contWidthWallet }]}>
                         <Icon name='card-outline' size={18} color='#0d7fcc' />
                         <Text style={{ fontSize: 12 }}>PayLater</Text>
                         <Icon name='chevron-forward' size={12} color='#0d7fcc' />
@@ -63,7 +63,33 @@ class CardAccount extends Component {
 }
 
 const styles = StyleSheet.create({
-
+    cardAccount: {
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+        paddingTop: 5
+    },
+    cardAccountProfile: {
+        height: 50,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    cardWallet: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+    },
+    cardWalletBox: {
+        backgroundColor: 'white',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        flexDirection: 'row',
+        padding: 2,
+        borderRadius: 5,
+        marginHorizontal: 2
+    }
 });
 
 //make this component available to the app

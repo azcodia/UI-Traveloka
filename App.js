@@ -42,7 +42,7 @@ export default class App extends Component {
                             <Scene key={"home"} title="Home" component={HomeScreen} icon={CustomIcon} iconTitle="Home" drawerLockMode={'locked-closed'} iconName="arrow-drop-down" iconTitle="Home" hideNavBar/>
                             <Scene key={"saved"} title="Saved" component={SavedScreen} icon={CustomIcon} drawerLockMode={'locked-closed'} iconTitle="Home" hideNavBar/>
                             <Scene key={"boked"} title="My Booking" component={BokedScreen} icon={CustomIcon} drawerLockMode={'locked-closed'} iconTitle="Home" hideNavBar/>
-                            <Scene key={"inbox"} title="My Inbox" component={InboxScreen} icon={CustomIcon} drawerLockMode={'locked-closed'} iconTitle="Home" hideNavBar/>
+                            {/* <Scene key={"inbox"} title="My Inbox" component={InboxScreen} icon={CustomIcon} drawerLockMode={'locked-closed'} iconTitle="Home" hideNavBar/> */}
                             <Scene key={"account"} title="My Account" component={AccountScreen} icon={CustomIcon} drawerLockMode={'locked-closed'} iconTitle="Home" hideNavBar/>
                         </Tabs>
                     </Scene>

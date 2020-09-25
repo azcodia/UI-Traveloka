@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Dimensions,
 } from 'react-native';
-
+// COMPONENT
+import CardSave from '../../Component/View/cardSave';
 class SavedScreen extends Component {
 
     constructor() {
@@ -16,8 +17,8 @@ class SavedScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: 'blue' }}>
-
+            <View style={{ flex: 1 }}>
+               <CardSave /> 
             </View>
         )
     }
